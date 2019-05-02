@@ -1,0 +1,30 @@
+#:import Tabela tabela.Tabela
+#:import pd pandas
+
+<Manager>:
+    Inicio:
+    Tela1:
+
+<Inicio>:
+    name: 'inicio'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: 1, None
+            height: '35dp'
+            pos_hint: {'right': 1, 'top': 1}
+            ToggleButton:
+                group: 'topicos'
+                text: 'Torque'
+                on_state: tab.add_widget(Tabela(pd.read_csv('chavetas_paralelas.csv'))) if self.state == 'down' else tab.clear_widgets()
+            ToggleButton:
+                group: 'topicos'
+                text: 'Diâmetro'
+            ToggleButton:
+                group: 'topicos'
+                text: 'Material'
+        FloatLayout:
+            id: tab
+            
+            
+<Tela1>:
