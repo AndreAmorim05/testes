@@ -1,10 +1,26 @@
+#:import Factory kivy.factory.Factory
 #:import Tabela tabela.Tabela
 #:import pd pandas
 
 <Manager>:
+    Menu:
     Inicio:
     Tela1:
 
+
+<Menu>:
+    name: 'menu'
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: .5,.5
+        pos_hint: {'center_x':.5, 'center_y':.5}
+        Button:
+            text: 'tela 1'
+            on_release: root.manager.current = 'tela1'
+            
+        Button:
+            text: 'tela 2'
+            on_release: root.manager.current = 'inicio'
 <Inicio>:
     name: 'inicio'
     BoxLayout:
@@ -16,7 +32,7 @@
             ToggleButton:
                 group: 'topicos'
                 text: 'Torque'
-                on_state: tab.add_widget(Tabela(pd.read_csv('chavetas_paralelas.csv'))) if self.state == 'down' else tab.clear_widgets()
+                # on_state: tab.add_widget(Tabela(pd.read_csv('chavetas_paralelas.csv'))) if self.state == 'down' else tab.clear_widgets()
             ToggleButton:
                 group: 'topicos'
                 text: 'Diâmetro'
@@ -28,3 +44,30 @@
             
             
 <Tela1>:
+    name: 'tela1'
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: 1, None
+            height: '35dp'
+            Widget:
+            Button:
+                text: 'voltar'
+                on_release: root.manager.current = 'menu'
+                size_hint_x: .2 
+        FloatLayout:
+            orientation: 'vertical'
+            id: tab1
+            GridLayout:
+                cols: 2
+                TextInput:
+                    id: tex1
+                    on_text: if root.pop: root.pop.dismiss()  #root.pop.dismiss() if 
+                TextInput:
+                    id: tex2
+                    on_text: if root.pop: root.pop.dismiss()
+            Button:
+                text: 'Tabela'
+                size_hint: .2, .2
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_release: root.req_tabela() # Factory.PopTabela().run() 

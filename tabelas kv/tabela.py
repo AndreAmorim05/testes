@@ -2,15 +2,18 @@ from kivy.uix.button import ButtonBehavior
 from kivy.uix.label import Label
 from kivy.graphics import Color, Rectangle
 from kivy.uix.gridlayout import GridLayout
+from kivy.properties import ObjectProperty, ListProperty
 from kivy.clock import Clock
 from kivy.metrics import dp
 
 
 
 class Tabela(GridLayout):
-    def __init__(self, DataFrame, **kwargs):
+    DataFrame = ObjectProperty()
+    ids_list = ListProperty()
+    def __init__(self, **kwargs):
         super(Tabela, self).__init__(**kwargs)
-        self.data = DataFrame
+        self.data = self.DataFrame
         self.cols = self.tamanho()
         self.spacing = dp(2)
         self.colunas = list(self.data.columns.values)
@@ -35,11 +38,23 @@ class Tabela(GridLayout):
                 self.add_widget(Label(text=str(row[col])))
     
     def pegar_dados(self, index, *args):
+        '''
+        Nesta função é recebido o índice escolhido ao se clicar na tabela,
+        o valor recebido por index é o indice, este indice é buscado no
+        DataFrame recebido e adiciona o valor de cada coluna da linha do 
+        índice ao seu respectivo Label ou TextInput, desde que os ids destes
+        tenham sido passados pela variável ids_list, os ids passados devem
+        ser da forma:
+        >>> [self.ids.nome_do_id_do_widget_1, self.ids.nome_do_id_do_widget_2...]
+        A quantidade de ids passados deve ser menor ou igual a quantidade de colunas
+        do DataFrame, caso seja maior, alguns widgets irão ficar sem texto.
+        '''
         try:
-            print(self.data.loc[index].tolist())
+            for ids, data in zip(self.ids_list, self.data.loc[index].tolist()):
+                ids.text = str(data)
         except:
-            print(self.data.loc[float(index)].tolist())
-        # return self.data.loc[int(index)].tolist()
+            for ids, data in zip(self.ids_list, self.data.loc[float(index)].tolist()):
+                ids.text = str(data)
 
 class ButtonStyle(ButtonBehavior, Label):
     def __init__(self, tex, ref, **kwargs):
