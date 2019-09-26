@@ -1,0 +1,30 @@
+Solid Edge Conversão para STL
+Data: terça-feira,setembro 10,2019 03:09
+Arquivo de origem:C:\Users\jsand\Documents\MEGAsync\IFPE\Processos de Fabricação 1\peça fundição.par
+Arquivo de saída: C:\Users\jsand\Documents\MEGAsync\IFPE\Processos de Fabricação 1\peça fundição André e Diogo.stl
+Sistema de origem: SOLID EDGE
+
+Hardware:
+Processador Intel(R) Core(TM) i5-5200U CPU @ 2.20GHz
+Sistema operacional: Windows 8
+Memória: 7,91 GB
+
+Informações de software:
+Versão do Parasolid: 30.1.256
+Versão do Bodyshop: 30.1.94
+Versão do Solid Edge: 219.00.01.006 x64
+
+Opções de exportação do STL:
+Formato do arquivo de saída:BINARY
+Exportar peças exibidas:Desligado
+Opção da estrutura: Monolithic
+Exportar unidades:Inch
+Exportar valor de tolerância:0,050000
+Exportar tipo de tolerância:Custom
+Exportar valor do ângulo do plano:0,523599
+
+Progresso da conversão:
+Fase 1 de 2 Buscando informações do Parasolid...
+Número de arquivos STL criados : 1
+Processo de conversão concluído
+Tempo requerido para converter:00 : 00 : 00
